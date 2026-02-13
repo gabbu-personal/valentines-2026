@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap } from "https://cdn.skypack.dev/gsap";
 
 // DOM Elements
 const sections = {
