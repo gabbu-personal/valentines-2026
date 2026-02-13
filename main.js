@@ -296,3 +296,8 @@ try {
   } else {
     initTimeline();
   }
+
+} catch (e) {
+  console.error("Critical Error:", e);
+  alert("Something went wrong! " + e.message);
+}
