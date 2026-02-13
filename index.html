@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malupitang Valentines 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Quicksand:wght@300..700&family=Fira+Code:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="background-elements"></div>
+
+    <nav class="navbar">
+      <div class="nav-brand"></div>
+      <div class="nav-links">
+        <a href="#" data-target="invitation-section" class="nav-link active">Invitation</a>
+        <a href="#" data-target="itinerary-section" class="nav-link">Itinerary</a>
+      </div>
+    </nav>
+
+    <section id="invitation-section" class="active-section">
+      <div class="card-group">
+        <div class="cat-container">
+          <div class="cat">
+            <div class="ears">
+              <div class="ear left-ear"></div>
+              <div class="ear right-ear"></div>
+            </div>
+            <div class="face">
+              <div class="stripes">
+                <div class="stripe center-stripe"></div>
+                <div class="stripe left-stripe"></div>
+                <div class="stripe right-stripe"></div>
+              </div>
+              <div class="eyes">
+                <div class="eye left-eye">
+                  <div class="pupil"></div>
+                </div>
+                <div class="eye right-eye">
+                  <div class="pupil"></div>
+                </div>
+              </div>
+              <div class="nose"></div>
+              <div class="mouth"></div>
+              <div class="cheeks">
+                <div class="cheek left-cheek"></div>
+                <div class="cheek right-cheek"></div>
+              </div>
+              <div class="whiskers">
+                <div class="whisker left-whisker"></div>
+                <div class="whisker right-whisker"></div>
+                <div class="whisker left-whisker-2"></div>
+                <div class="whisker right-whisker-2"></div>
+              </div>
+            </div>
+            <div class="paws">
+              <div class="paw left-paw"></div>
+              <div class="paw right-paw"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative Card Ears -->
+        <div class="card-ears">
+          <div class="card-ear left"></div>
+          <div class="card-ear right"></div>
+        </div>
+
+        <div class="content-wrapper">
+          <h1 class="title">Be My Valentine's Date!!</h1>
+          <p class="subtitle">Bawal naman humindi</p>
+          <div class="buttons-container">
+            <button id="yes-btn" class="btn-neon-love">
+              <i class="fa-solid fa-heart"></i>
+              <span>&lt;Yes/&gt;</span>
+            </button>
+            <button id="no-btn" class="btn-neon-love btn-neon-no">
+              <i class="fa-solid fa-xmark"></i>
+              <span>&lt;No/&gt;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="itinerary-section" class="hidden-section">
+      <div class="content-wrapper">
+        <h1 class="title">LETS GOOO</h1>
+        <div class="itinerary-details">
+          <h2>Itinerary for February 14</h2>
+          <div class="timeline">
+            <div class="timeline-inner">
+              <!-- 9:30 Meet up -->
+              <div class="timeline-item" data-start="9:30" data-end="10:00">
+                <div class="time">9:30 AM</div>
+                <div class="content">
+                  <h3>Meet up</h3>
+                  <p>LRT Buendia</p>
+                </div>
+              </div>
+
+              <!-- 10:00 - 12:00 Ocean Park -->
+              <div class="timeline-item" data-start="10:00" data-end="12:00">
+                <div class="time">10:00 AM - 12:00 PM</div>
+                <div class="content">
+                  <h3>Ocean Park Time</h3>
+                  <p>Mangingisda na tayo</p>
+                </div>
+              </div>
+
+              <!-- 12:00 - 14:00 Lunch -->
+              <div class="timeline-item" data-start="12:00" data-end="14:00">
+                <div class="time">12:00 PM - 2:00 PM</div>
+                <div class="content">
+                  <h3>Chibugan na</h3>
+                  <p>Kakain masasarap na pagkain</p>
+                </div>
+              </div>
+
+              <!-- 15:00 - 18:00 Biodome -->
+              <div class="timeline-item" data-start="15:00" data-end="18:00">
+                <div class="time">3:00 PM - 6:00 PM</div>
+                <div class="content">
+                  <h3>Philippine Biodome Time</h3>
+                  <p>With the homies na animals</p>
+                </div>
+              </div>
+
+              <!-- 18:00 - 18:45 Aurora -->
+              <div class="timeline-item" data-start="18:00" data-end="18:45">
+                <div class="time">6:00 PM - 6:45 PM</div>
+                <div class="content">
+                  <h3>Aurora Borealis</h3>
+                  <p>BOOM BANGIS NETO</p>
+                </div>
+              </div>
+
+              <!-- 19:00 Rest -->
+              <div class="timeline-item" data-start="19:00" data-end="23:59">
+                <div class="time">7:00 PM Onwards</div>
+                <div class="content">
+                  <h3>Rest Time</h3>
+                  <p>Pahinga & Cuddles?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Back button removed as we have navbar now -->
+        </div>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

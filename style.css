@@ -1,0 +1,869 @@
+:root {
+  --primary-green: #2e7d32;
+  --dark-green: #1b5e20;
+  --light-green: #e8f5e9;
+  --accent-green: #66bb6a;
+  --soft-pink: #fce4ec;
+  --white: #ffffff;
+  --soft-pink: #fce4ec;
+  --white: #ffffff;
+  --font-main: 'Quicksand', 'Karla', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-green);
+  color: var(--dark-green);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+#background-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  color: rgba(46, 125, 50, 0.1);
+  font-size: 2rem;
+  user-select: none;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  /* Fixed to viewport to ensure it never scrolls away */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  /* Maximum z-index */
+  background: rgba(255, 255, 255, 0.6);
+  /* Slightly more opaque */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  /* Subtle shadow for separation */
+  box-sizing: border-box;
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--primary-green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--dark-green);
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  opacity: 0.8;
+  white-space: nowrap;
+  /* Prevent breaking on small screens */
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(46, 125, 50, 0.15);
+  opacity: 1;
+}
+
+/* Sections */
+section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+  padding-top: 60px;
+  z-index: 20;
+}
+
+section.active-section {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Card Group for Relative Positioning */
+.card-group {
+  position: relative;
+  /* display: flex? No, content-wrapper is block-ish. width auto. */
+  width: 550px;
+  max-width: 90%;
+}
+
+.content-wrapper {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(46, 125, 50, 0.15);
+  backdrop-filter: blur(15px);
+  width: 100%;
+  /* Fill group */
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 5;
+  position: relative;
+  z-index: 5;
+  /* Card in front of cat */
+  transition: transform 0.3s;
+}
+
+/* Decorative Card Ears */
+.card-ears {
+  position: absolute;
+  top: -25px;
+  width: 100%;
+  height: 40px;
+  z-index: 6;
+  /* On top of card? Or behind? Let's go behind content-wrapper but in front of peeking cat? 
+                 Actually, if they are "on the card", they should look like part of it.
+                 If content-wrapper has bg, ears should have same bg?
+                 User said "cat ears", maybe like the floating cat?
+                 Let's make them White (matching card) with pink inside? Or Orange?
+                 "Playful" -> Let's go with the Orange Cat theme. */
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  /* Spacing from edges */
+  pointer-events: none;
+}
+
+.card-ear {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  /* Match card bg */
+  border-radius: 15px 15px 0 0;
+  /* Rounded triangleish */
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  /* Match card border */
+  backdrop-filter: blur(15px);
+  box-shadow: 0 -5px 15px rgba(46, 125, 50, 0.05);
+  /* Subtle shadow up */
+}
+
+/* Inner Ear Pink */
+.card-ear::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #ffcdd2;
+  /* Soft pink */
+  border-radius: 50% 50% 0 0;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+.card-ear.left {
+  transform: rotate(-10deg);
+}
+
+.card-ear.right {
+  transform: rotate(10deg);
+}
+
+.content-wrapper:hover~.card-ears .card-ear {
+  /* Wiggle on hover? */
+  animation: earWiggle 1s ease-in-out infinite;
+}
+
+@keyframes earWiggle {
+
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(-15deg);
+  }
+}
+
+/* Need separate keyframes for right ear if we want symmetry */
+
+
+/* Cat Styles */
+.cat-container {
+  position: absolute;
+  top: 0;
+  /* Align to top of card group */
+  left: 0;
+  width: 100%;
+  height: 0;
+  /* Zero height so it doesn't push flow, just an anchor */
+  z-index: 1;
+  /* Behind content-wrapper (5) */
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cat {
+  position: absolute;
+  bottom: -5px;
+  width: 140px;
+  /* Wider/Chonkier */
+  height: 110px;
+  background-color: #ffcc80;
+  /* Creamy Orange */
+  border-radius: 50% 50% 0 0;
+  /* Very round head */
+  transform: translateY(150%);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ears {
+  position: absolute;
+  top: -15px;
+  width: 100%;
+}
+
+.ear {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-color: #ffcc80;
+  border-radius: 10px;
+  /* Soft rounded triangle look */
+  border: none;
+}
+
+.ear::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ffab91;
+  /* Pink inside */
+  border-radius: 50%;
+  /* Round inside */
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left-ear {
+  left: 5px;
+  transform: rotate(-15deg);
+}
+
+.right-ear {
+  right: 5px;
+  transform: rotate(15deg);
+}
+
+.face {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* STRIPES */
+.stripes {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0;
+}
+
+.stripe {
+  width: 12px;
+  height: 25px;
+  background-color: #ef6c00;
+  /* Darker orange stripe */
+  border-radius: 0 0 10px 10px;
+}
+
+.eyes {
+  display: flex;
+  gap: 35px;
+  /* Wider apart */
+  margin-top: 45px;
+  /* Lower down the face */
+}
+
+.eye {
+  width: 20px;
+  height: 20px;
+  /* Round buttons */
+  background: #3e2723;
+  /* Dark brown/black */
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.pupil {
+  width: 8px;
+  height: 8px;
+  background: white;
+  /* Shine */
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: none;
+  /* Just a static shine */
+  opacity: 0.8;
+}
+
+/* Happy Eyes State - > < style but curved for the reference? 
+   Reference has open eyes usually, but happy is > <. Keeping the > < logic as requested previously. */
+.cat.happy .eye {
+  height: 10px;
+  width: 16px;
+  border-radius: 0;
+  background: transparent;
+  border: 3px solid #3e2723;
+  border-left: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+}
+
+.cat.happy .left-eye {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.cat.happy .right-eye {
+  transform: translateY(5px) rotate(225deg);
+}
+
+.cat.happy .pupil {
+  opacity: 0;
+}
+
+.nose {
+  width: 8px;
+  height: 6px;
+  background: #3e2723;
+  /* Dark nose */
+  border-radius: 50%;
+  margin-top: 5px;
+  z-index: 2;
+}
+
+.cat.happy .nose {
+  margin-top: 5px;
+}
+
+.mouth {
+  width: 20px;
+  height: 10px;
+  border: none;
+  opacity: 1;
+  /* Reference often has tiny mouth or invisible, but we need happy mouth */
+  position: relative;
+  margin-top: -3px;
+}
+
+/* Neutral mouth - tiny curves or hidden? Let's make it tiny w */
+.mouth::before,
+.mouth::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 5px;
+  border-bottom: 2px solid #3e2723;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.mouth::before {
+  left: 0;
+  border-right: 2px solid #3e2723;
+  transform: rotate(10deg);
+}
+
+.mouth::after {
+  right: 0;
+  border-left: 2px solid #3e2723;
+  transform: rotate(-10deg);
+}
+
+.cat.happy .mouth {
+  opacity: 1;
+}
+
+.cat.happy .mouth::before,
+.cat.happy .mouth::after {
+  opacity: 1;
+  border-width: 2px;
+  height: 8px;
+}
+
+.cheeks {
+  position: absolute;
+  top: 55px;
+  /* Aligned with eyes/nose */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cat.happy .cheeks {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.cheek {
+  width: 20px;
+  height: 10px;
+  background: #ffab91;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.whiskers {
+  display: block;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+}
+
+.whisker {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #8d6e63;
+  border-radius: 2px;
+}
+
+.left-whisker {
+  left: -20px;
+  top: 10px;
+  transform: rotate(5deg);
+}
+
+.right-whisker {
+  right: -20px;
+  top: 10px;
+  transform: rotate(-5deg);
+}
+
+.left-whisker-2 {
+  left: -20px;
+  top: 18px;
+  transform: rotate(-5deg);
+}
+
+.right-whisker-2 {
+  right: -20px;
+  top: 18px;
+  transform: rotate(5deg);
+}
+
+/* PAWS - The "Huge Concern" fix */
+/* Reference: Paws are small rounded lumps resting on the edge */
+.paws {
+  position: absolute;
+  bottom: -6px;
+  /* Overlap the edge slightly */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* Center them relative to body? Or wide? */
+  gap: 50px;
+  /* Space them out */
+  padding: 0;
+  transition: transform 0.3s;
+  z-index: 20;
+  /* On top of card edge */
+}
+
+.paw {
+  width: 30px;
+  height: 25px;
+  background: #ffcc80;
+  /* Match body */
+  border-radius: 15px 15px 0 0;
+  /* Half circle */
+  border: 2px solid #cca16e;
+  /* Subtle shading/outline if needed, or just shadow */
+  border-bottom: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Paw "fingers" lines */
+.paw::before,
+.paw::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  width: 2px;
+  height: 10px;
+  background: #cca16e;
+  border-radius: 2px;
+}
+
+.paw::before {
+  left: 10px;
+}
+
+.paw::after {
+  right: 10px;
+}
+
+.cat.happy .paws {
+  transform: translateY(-15px) rotate(-10deg);
+  /* Little happy paws up, but keep them looking like paws */
+  /* If raising paws, they shouldn't look detached. */
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-green);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  color: var(--dark-green);
+  font-weight: 500;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 1rem;
+  min-height: 70px;
+}
+
+/* Base Neon Button */
+.btn-neon-love {
+  position: relative;
+  padding: 15px 40px;
+  background: #6f2c81;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  /* Font Settings */
+  font-family: 'Fira Code', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: white;
+
+  /* Border & Glow */
+  border: 2px solid #6f2c81;
+  /* Purple Border */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(199, 120, 221, 0.2);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-neon-love i {
+  margin-right: 10px;
+  color: #ff69b4;
+  display: inline-block;
+  /* Ensure transform works */
+  /* transition: transform 0.3s ease; REMOVED to avoid conflict with animation */
+}
+
+/* Hover Effects - Love */
+.btn-neon-love:hover {
+  color: #fff;
+  box-shadow:
+    0 0 10px #C778DD,
+    0 0 20px #C778DD,
+    0 0 40px #ff69b4;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  border-color: #ff69b4;
+}
+
+.btn-neon-love:hover i {
+  animation: heartBeat 1s infinite;
+  filter: drop-shadow(0 0 5px #ff69b4);
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.3);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-neon-love:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 15px #C778DD;
+}
+
+/* No Button Variant (Red Neon) */
+.btn-neon-no {
+  /* Red */
+  box-shadow: 0 0 5px rgba(224, 108, 117, 0.2);
+  color: white;
+}
+
+.btn-neon-no i {
+  color: #e06c75;
+}
+
+/* No Button Hover (Initially just glow red, before logic turns it to Yes) */
+/* We'll handle the transformation to Love style via JS class switching or overrides */
+
+@media (max-width: 600px) {
+  .content-wrapper {
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .navbar {
+    padding: 1rem;
+  }
+}
+
+/* Timeline Styles - Center Layout */
+/* Timeline Styles - Center Layout */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 80px auto 0;
+  padding: 0;
+  height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-green) rgba(0, 0, 0, 0.05);
+}
+
+.timeline-inner {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* Custom Scrollbar */
+.timeline::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background-color: var(--primary-green);
+  border-radius: 3px;
+}
+
+/* Vertical Line - Centered in Scrollable Inner */
+.timeline-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 4px;
+  background: rgba(46, 125, 50, 0.2);
+  border-radius: 2px;
+}
+
+/* Remove old line from .timeline */
+.timeline::before {
+  display: none;
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0 40px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+  opacity: 0.3;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+/* Odd items - Left Side */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+/* Even items - Right Side */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Dot - Centered on Line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  /* Aligns better with first line of text */
+  width: 24px;
+  /* Increased to match offset calculation */
+  height: 24px;
+  background: #fff;
+  border: 4px solid var(--dark-green);
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+/* Dot for Left Items (Odd) -> Right edge */
+.timeline-item:nth-child(odd)::before {
+  right: -16px;
+  /* 12px = Half of 24px width/border to center exactly */
+}
+
+/* Dot for Right Items (Even) -> Left edge */
+.timeline-item:nth-child(even)::before {
+  left: -16px;
+}
+
+.timeline-item .time {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-item .content {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(46, 125, 50, 0.1);
+  transition: all 0.3s;
+}
+
+.timeline-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.3rem;
+  color: var(--primary-green);
+}
+
+.timeline-item p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Active State */
+.timeline-item.active {
+  opacity: 1;
+  filter: grayscale(0%);
+  z-index: 20;
+  pointer-events: all;
+}
+
+.timeline-item.active::before {
+  background: var(--primary-green);
+  box-shadow: 0 0 20px var(--accent-green);
+  transform: scale(1.3);
+  border-color: var(--light-green);
+}
+
+.timeline-item.active .content {
+  border-color: var(--primary-green);
+  box-shadow: 0 15px 35px rgba(46, 125, 50, 0.25);
+  background: #f1f8e9;
+}
+
+/* Mobile Responsive - Stack logic */
+@media (max-width: 600px) {
+  .timeline::before {
+    left: 20px;
+    /* Move line to left */
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding-left: 50px;
+    padding-right: 10px;
+  }
+
+  .timeline-item:nth-child(odd)::before,
+  .timeline-item:nth-child(even)::before {
+    left: 10px;
+    /* Reset dot to left */
+    right: auto;
+  }
+}
