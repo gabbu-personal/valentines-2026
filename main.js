@@ -1,4 +1,4 @@
-import { gsap } from "https://unpkg.com/gsap@3.12.5/index.js";
+import gsap from "https://esm.sh/gsap";
 
 
 console.log("Valentine's Site Loaded! 🚀");
