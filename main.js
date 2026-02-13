@@ -1,6 +1,4 @@
-import gsap from "https://esm.sh/gsap";
-
-
+// GSAP is loaded via <script> tag in HTML
 console.log("Valentine's Site Loaded! 🚀");
 try {
   // DOM Elements
